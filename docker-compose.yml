@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: umkm_postgres
+    environment:
+      POSTGRES_USER: umkm
+      POSTGRES_PASSWORD: Umkmajah13
+      POSTGRES_DB: umkm_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U umkm -d umkm_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - umkm_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: umkm_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: AdminUmkm@Vory.com
+      PGADMIN_DEFAULT_PASSWORD: AdminVory
+    ports:
+      - "5050:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - umkm_network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: umkm_backend
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - umkm_network
+
+networks:
+  umkm_network:
+    driver: bridge
+
+volumes:
+  postgres_data:

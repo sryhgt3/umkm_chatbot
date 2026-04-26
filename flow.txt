@@ -1,0 +1,16 @@
+CHAT BOT UMKM
+
+V1
+BIDANG MAKANAN
+
+TARGET :
+Sistem Order Otomatis + AI Chat untuk UMKM makanan
+- AUTO REPLY
+- MENU LIST	
+- BISA ORDER MANUAL
+- DASHBOARD ORDER
+
+
+🔥 Bonus (recommended improvement)
+Instead of manual curl, you can also verify webhook status:
+https://api.telegram.org/bot<TOKEN>/getWebhookInfo
