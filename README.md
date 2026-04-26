@@ -19,9 +19,9 @@ Sebelum memulai, pastikan Anda telah menginstal:
 
 1. **Clone repositori** ini ke direktori lokal Anda.
 2. **Konfigurasi Environment**:
-   Salin file `.env.example` menjadi `.env`:
+   Salin file `.env.example` menjadi `.env` di dalam folder backend:
    ```bash
-   cp .env.example .env
+   cp backend/.env.example backend/.env
    ```
    Buka file `.env` dan sesuaikan nilainya, terutama `BOT_TOKEN`:
    ```env
@@ -75,24 +75,29 @@ curl -X POST https://api.telegram.org/bot<TOKEN_BOT_ANDA>/setWebhook?url=<URL_PU
 ## Struktur Proyek
 ```bash
 ├── agent/                  # Dokumentasi & spesifikasi agen AI
-├── cmd/
-│   └── server/
-│       └── main.go         # Entry point aplikasi & Setup Router
-├── internal/
-│   ├── client/             # Client pihak ketiga (Telegram API)
-│   ├── config/             # Pengaturan konfigurasi & Env loader
-│   ├── database/           # Koneksi database & Migrasi
-│   ├── handler/            # HTTP Handlers (Webhook, Auth)
-│   ├── middleware/         # Gin Middleware (Auth, Role check)
-│   ├── model/              # Domain Models & Data structures
-│   ├── repository/         # Data access layer (PostgreSQL)
-│   ├── service/            # Business Logic layer
-│   └── utils/              # Helper functions (Hashing, JWT)
-├── migrations/             # File migrasi SQL
-├── docs/                   # Dokumentasi API (Baru)
-├── .env                    # Variabel lingkungan (Private)
-├── .env.example            # Template variabel lingkungan
-├── Dockerfile              # Konfigurasi Docker backend
+├── backend/                # Source code backend (Go)
+│   ├── cmd/
+│   │   └── server/
+│   │       └── main.go     # Entry point aplikasi & Setup Router
+│   ├── internal/
+│   │   ├── client/         # Client pihak ketiga (Telegram API)
+│   │   ├── config/         # Pengaturan konfigurasi & Env loader
+│   │   ├── database/       # Koneksi database & Migrasi
+│   │   ├── handler/        # HTTP Handlers (Webhook, Auth)
+│   │   ├── middleware/     # Gin Middleware (Auth, Role check)
+│   │   ├── model/          # Domain Models & Data structures
+│   │   ├── repository/     # Data access layer (PostgreSQL)
+│   │   ├── service/        # Business Logic layer
+│   │   └── utils/          # Helper functions (Hashing, JWT)
+│   ├── migrations/         # File migrasi SQL
+│   ├── docs/               # Dokumentasi API
+│   ├── .env                # Variabel lingkungan (Private)
+│   ├── .env.example        # Template variabel lingkungan
+│   ├── Dockerfile          # Konfigurasi Docker backend
+│   ├── go.mod              # Definisi modul Go
+│   └── go.sum              # Checksum modul Go
+├── frontend/               # Source code frontend (Akan datang)
+├── .gitignore              # Root gitignore
 ├── docker-compose.yml      # Orchestration (App, DB, pgAdmin)
-└── go.mod                  # Definisi modul Go
+└── flow.txt                # Diagram alur aplikasi
 ```

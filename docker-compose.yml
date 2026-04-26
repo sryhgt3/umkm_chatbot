@@ -36,11 +36,11 @@ services:
 
   backend:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     container_name: umkm_backend
     env_file:
-      - .env
+      - ./backend/.env
     ports:
       - "8080:8080"
     depends_on:
